@@ -1,0 +1,6 @@
+package com.example.jetpacknewsapp.domain.usecases
+
+data class AppEntryUseCases(
+    val readAppEntry: ReadAppEntry,
+    val saveAppEntry: SaveAppEntry
+)
