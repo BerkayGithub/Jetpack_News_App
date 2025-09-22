@@ -1,4 +1,4 @@
-package com.example.jetpacknewsapp.domain.usecases
+package com.example.jetpacknewsapp.domain.usecases.appentry
 
 import com.example.jetpacknewsapp.domain.manager.LocalUserManager
 

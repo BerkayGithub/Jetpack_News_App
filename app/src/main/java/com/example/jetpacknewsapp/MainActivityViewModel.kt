@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetpacknewsapp.domain.usecases.AppEntryUseCases
+import com.example.jetpacknewsapp.domain.usecases.appentry.AppEntryUseCases
 import com.example.jetpacknewsapp.view.navgraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

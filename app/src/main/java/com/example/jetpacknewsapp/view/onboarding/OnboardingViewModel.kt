@@ -2,7 +2,7 @@ package com.example.jetpacknewsapp.view.onboarding
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetpacknewsapp.domain.usecases.AppEntryUseCases
+import com.example.jetpacknewsapp.domain.usecases.appentry.AppEntryUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
