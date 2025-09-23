@@ -12,23 +12,26 @@ import com.example.jetpacknewsapp.view.home.HomeScreen
 import com.example.jetpacknewsapp.view.home.HomeViewModel
 import com.example.jetpacknewsapp.view.onboarding.OnboardingViewModel
 import com.example.jetpacknewsapp.view.onboarding.components.OnboardingScreen
+import com.example.jetpacknewsapp.view.search.SearchEvent
+import com.example.jetpacknewsapp.view.search.SearchScreen
+import com.example.jetpacknewsapp.view.search.SearchViewModel
 
 @Composable
 fun NavGraph(
-    startDestination: String
-){
+    startDestination: String,
+) {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = startDestination){
+    NavHost(navController = navController, startDestination = startDestination) {
         navigation(
             route = Route.AppStartNavigation.route,
             startDestination = Route.OnboardingScreen.route
-        ){
+        ) {
             composable(
                 route = Route.OnboardingScreen.route
-            ){
-                val viewModel : OnboardingViewModel = hiltViewModel()
-                OnboardingScreen (
+            ) {
+                val viewModel: OnboardingViewModel = hiltViewModel()
+                OnboardingScreen(
                     event = viewModel::onEvent
                 )
             }
@@ -37,13 +40,15 @@ fun NavGraph(
         navigation(
             route = Route.NewsNavigation.route,
             startDestination = Route.NewsNavigatorScreen.route
-        ){
+        ) {
             composable(
                 route = Route.NewsNavigatorScreen.route
-            ){
-                val viewModel : HomeViewModel = hiltViewModel()
-                val articles = viewModel.news.collectAsLazyPagingItems()
-                HomeScreen(articles = articles) { }
+            ) {
+                val viewModel: SearchViewModel = hiltViewModel()
+                SearchScreen(
+                    state = viewModel.searchState.value,
+                    searchEvent = viewModel::onEvent,
+                    navigate = {})
             }
         }
     }

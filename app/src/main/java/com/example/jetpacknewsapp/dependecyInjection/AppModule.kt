@@ -12,6 +12,7 @@ import com.example.jetpacknewsapp.domain.usecases.appentry.ReadAppEntry
 import com.example.jetpacknewsapp.domain.usecases.appentry.SaveAppEntry
 import com.example.jetpacknewsapp.domain.usecases.news.GetNews
 import com.example.jetpacknewsapp.domain.usecases.news.NewsUseCases
+import com.example.jetpacknewsapp.domain.usecases.news.SearchNews
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -59,6 +60,7 @@ object AppModule {
     fun provideNewsUseCases(
         newsRepository: NewsRepository
     ) = NewsUseCases(
-        getNews = GetNews(newsRepository)
+        getNews = GetNews(newsRepository),
+        searchNews = SearchNews(newsRepository)
     )
 }
