@@ -1,20 +1,15 @@
 package com.example.jetpacknewsapp.view.navgraph
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.jetpacknewsapp.view.home.HomeScreen
-import com.example.jetpacknewsapp.view.home.HomeViewModel
+import com.example.jetpacknewsapp.view.bookmark.BookmarkScreen
+import com.example.jetpacknewsapp.view.bookmark.BookmarkViewModel
 import com.example.jetpacknewsapp.view.onboarding.OnboardingViewModel
 import com.example.jetpacknewsapp.view.onboarding.components.OnboardingScreen
-import com.example.jetpacknewsapp.view.search.SearchEvent
-import com.example.jetpacknewsapp.view.search.SearchScreen
-import com.example.jetpacknewsapp.view.search.SearchViewModel
 
 @Composable
 fun NavGraph(
@@ -44,11 +39,11 @@ fun NavGraph(
             composable(
                 route = Route.NewsNavigatorScreen.route
             ) {
-                val viewModel: SearchViewModel = hiltViewModel()
-                SearchScreen(
-                    state = viewModel.searchState.value,
-                    searchEvent = viewModel::onEvent,
-                    navigate = {})
+                val viewModel: BookmarkViewModel = hiltViewModel()
+                BookmarkScreen(
+                    state = viewModel.bookmarkState.value,
+                    navigate = {}
+                )
             }
         }
     }
