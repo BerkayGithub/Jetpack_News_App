@@ -13,14 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import com.example.jetpacknewsapp.R
+import com.example.jetpacknewsapp.domain.model.Article
 import com.example.jetpacknewsapp.view.Dimensions.MediumPadding1
 import com.example.jetpacknewsapp.view.common.ArticleList
-import com.example.jetpacknewsapp.view.navgraph.Route
 
 @Composable
 fun BookmarkScreen(
     state: BookmarkState,
-    navigate: (String) -> Unit
+    navigateToDetails: (Article) -> Unit
 ){
     Column(
         modifier = Modifier
@@ -34,8 +34,8 @@ fun BookmarkScreen(
             color = colorResource(R.color.text_title)
         )
         Spacer(modifier = Modifier.height(MediumPadding1))
-        ArticleList(articles = state.articles) {
-            navigate(Route.DetailsScreen.route)
+        ArticleList(articles = state.articles) { article ->
+            navigateToDetails(article)
         }
 
     }

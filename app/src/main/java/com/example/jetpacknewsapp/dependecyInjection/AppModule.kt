@@ -19,6 +19,7 @@ import com.example.jetpacknewsapp.domain.usecases.news.DeleteArticle
 import com.example.jetpacknewsapp.domain.usecases.news.GetNews
 import com.example.jetpacknewsapp.domain.usecases.news.NewsUseCases
 import com.example.jetpacknewsapp.domain.usecases.news.SearchNews
+import com.example.jetpacknewsapp.domain.usecases.news.SelectArticle
 import com.example.jetpacknewsapp.domain.usecases.news.SelectArticles
 import com.example.jetpacknewsapp.domain.usecases.news.UpsertArticle
 import dagger.Module
@@ -61,19 +62,20 @@ object AppModule {
     @Singleton
     fun provideNewsRepository(
         newsAPI: NewsAPI,
-    ): NewsRepository = NewsRepositoryImpl(newsAPI)
+        newsDAO: NewsDAO
+    ): NewsRepository = NewsRepositoryImpl(newsAPI, newsDAO)
 
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository,
-        newsDAO: NewsDAO
+        newsRepository: NewsRepository
     ) = NewsUseCases(
         getNews = GetNews(newsRepository),
         searchNews = SearchNews(newsRepository),
-        upsertArticle = UpsertArticle(newsDAO),
-        deleteArticle = DeleteArticle(newsDAO),
-        selectArticles = SelectArticles(newsDAO),
+        upsertArticle = UpsertArticle(newsRepository),
+        deleteArticle = DeleteArticle(newsRepository),
+        selectArticles = SelectArticles(newsRepository),
+        selectArticle = SelectArticle(newsRepository)
     )
 
     @Provides
